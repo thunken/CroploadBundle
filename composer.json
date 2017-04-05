@@ -1,0 +1,31 @@
+{
+  "name" : "thunken/croploadbundle",
+  "description" : "Cropload for Symfony, easy steps to add and manage image upload and cropper.",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Damien Vannson",
+    "email" : "damien@thunken.com"
+  }],
+  "keywords" : [
+    "upload cropper symfony"
+  ],
+  "license" : [
+    "MIT"
+  ],
+
+  "require" : {
+    "oneup/uploader-bundle": "*"
+  },
+
+  "require-dev": {
+  },
+
+  "suggest": {
+  },
+
+  "autoload": {
+    "psr-0": { "Thunken\\CroploadBundle": "" }
+  },
+
+  "target-dir": "Thunken/CroploadBundle"
+}

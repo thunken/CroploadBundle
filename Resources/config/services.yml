@@ -1,0 +1,9 @@
+services:
+    cropload.upload_listener:
+        class: Thunken\CroploadBundle\EventListener\UploadListener
+        arguments: ["@doctrine.orm.entity_manager", "%upload_web_dir%", "%upload_root_dir%"]
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+
+    cropload.date_chunk_namer:
+        class: Thunken\CroploadBundle\Naming\DateChunkNamer
