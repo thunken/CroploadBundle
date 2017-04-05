@@ -1,0 +1,32 @@
+<a href="#"
+   class="preview-modal-link" data-toggle="modal" data-keyboard="false" data-backdrop="static" data-target="#preview-modal">
+    {% if imageThumbnailPath %}
+        <img class="lazy-image img-responsive original-thumb"
+          data-original="{{ imageThumbnailPath }}" />
+    {% endif %}
+    <span class="cropper-preview"></span>
+</a>
+
+<div class="modal fade preview-modal" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="preview-modal-label">Image Preview</h4>
+            </div>
+            <div class="modal-body">
+                {% if imagePath %}
+                    <div class="img-wrapper">
+                        <img class="img-responsive center-block"
+                             src="{{ imagePath }}" />
+                    </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <div class="crop-preview"></div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success btn-crop hidden">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,8 @@ It gives you all the tools needed to add an upload & crop field to any form in m
 
 # Dependencies
 ## PHP / Managed by Composer
-- OneUploaderBundle : https://github.com/1up-lab/OneupUploaderBundle
+- OneUploaderBundle: https://github.com/1up-lab/OneupUploaderBundle
+- LiipImagineBundle: https://github.com/liip/LiipImagineBundle
 
 ## Javascript / Css or Less / You can manage these with Bower
 - Jquery: https://jquery.com/
@@ -53,7 +54,7 @@ parameters:
 
 oneup_uploader:
   mappings:
-    post: # Your mapping name for a post in this example
+    post: # Your mapping name for a post in this example (call this an endpoint)
       frontend: blueimp # For now, only blueimp is handled
       storage:
         directory: "%upload_root_dir%/post" # Your upload folder for a post
@@ -150,6 +151,65 @@ class BlogController extends Controller
 
 Your target entity doesn't need any change.
 
+## Form Template
+~~~
+<div id="illustration-field-group" class="form-group">
+
+    <div class="btn btn-block btn-flat btn-file">
+        Click to upload an image&hellip;
+        <input class="fileupload-trigger"
+               type="file"
+               name="file"
+               accept="image/png,image/gif,image/jpg,image/jpeg"
+               data-url="{{ oneup_uploader_endpoint('post') }}" />
+
+        {{ form_widget(form.illustration, {
+            'label': false
+        }) }}
+
+        <div id="file-upload-progress" class="progress hidden">
+            <div class="progress-bar progress-bar-success" style="width: 0;"></div>
+        </div>
+    </div>
+
+    {% set image = '' %}
+    {% set imagePath = '' %}
+    {% set imageThumbnailPath = '' %}
+    {% if form.vars.value.illustration %}
+        {% set image = '/' ~ form.vars.value.illustration %}
+        {% set imagePath = asset(image | imagine_filter('image')) %}
+        {% set imageThumbnailPath = asset(image | imagine_filter('image_thumb')) %}
+    {% endif %}
+
+    <div class="preview-modal-link-wrapper">
+        {% include 'ThunkenCroploadBundle:Partials:image-cropper.html.twig' with {
+        'imagePath': imagePath, 'imageThumbnailPath': imageThumbnailPath
+        } %}
+    </div>
+
+    {{ form_widget(form.dimension) }}
+
+</div>
+~~~
+
+At this point you need to handle your image filters with https://github.com/liip/LiipImagineBundle.  
+Filter configuration example:
+~~~
+liip_imagine:
+    # ...
+    filter_sets:
+
+        image:
+            quality: 100
+            filters:
+                thumbnail: { size: [650, 310], mode: outbound, allow_upscale: true }
+
+        image_thumb:
+            quality: 100
+            filters:
+                thumbnail: { size: [300, 150], mode: outbound, allow_upscale: true }
+~~~
+
 
 ## Add frontend dependencies
 ### Bower includes example (in a bower.json file)
@@ -218,6 +278,7 @@ services:
 - We could handle multiple files upload.
 - We could use events to handle file upload.
 - Make the documentation clearer.
+- Make a twig widget for the upload field
 - ??
 
 It has been quickly made for a inside project, needs some improvements, we wanted to share the result.
