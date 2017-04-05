@@ -32,6 +32,16 @@ Modify and add these lines to your composer.json file as follows:
     [...]
 ~~~
 
+Register the bundle in app/AppKernel.php
+~~~
+public function registerBundles()
+    {
+        $bundles = [
+            // ...
+            new Thunken\CroploadBundle\ThunkenCroploadBundle(),
+    // ...
+~~~
+
 ## Configure bundle
 
 app/config/config.yml, add these parameters (you can change upload_web_dir to your need):
@@ -168,7 +178,7 @@ Your target entity doesn't need any change.
     '<your_front_vendor_folder>/blueimp-file-upload/js/jquery.fileupload.js'
     '<your_front_vendor_folder>/cropper/dist/cropper.js'
 
-    '@Thunken/CroploadBundle/Resources/js/image-upload-manager/image-upload-manager.js'
+    '@ThunkenCroploadBundle/Resources/js/image-upload-manager/image-upload-manager.js'
 
     output="<your_public_assets_folder>/cropload.js"
     filter=''
