@@ -95,7 +95,8 @@ class PostType extends AbstractType
                 ]
             ])
             // ...
-            ->add('illustration', HiddenType::class, [ // Specify your image field here and replace illustration
+            ->add('illustration', ImageType::class, [ // Specify your image field here and replace illustration
+                'upload_endpoint' => 'post', // Upload endpoint defined in OneUp
                 'required' => false,
                 'attr' => [
                     'class' => 'fake-file-field',
