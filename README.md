@@ -293,7 +293,7 @@ services:
 - Make the documentation clearer.
 - ??
 
-It has been quickly made for a inside project, needs some improvements, we wanted to share the result.
+It has been made for a inside project, and specific features, needs some improvements, we wanted to share the result.
 
 For these reasons, feel free to contact us or submit if you have any suggestions, enhancements, questions or if you need help.
 Any feedback is appreciated as well.
