@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     var $fieldGroup = $('#illustration-field-group');
-    
+    var $dimensionGroup = $('#dimension-field-group')
+
     var $fakeFileField = $('.fake-file-field', $fieldGroup);
     var cropperRatio = $fakeFileField.data('ratio');
 
@@ -14,10 +15,10 @@ $(document).ready(function() {
     var $previewModal = $('.preview-modal', $previewModalLinkWrapper);
 
     var coordinatesElements = {
-        width: $('.crop-width', $fieldGroup),
-        height: $('.crop-height', $fieldGroup),
-        offsetX: $('.crop-offset-x', $fieldGroup),
-        offsetY: $('.crop-offset-y', $fieldGroup)
+        width: $('.crop-width', $dimensionGroup),
+        height: $('.crop-height', $dimensionGroup),
+        offsetX: $('.crop-offset-x', $dimensionGroup),
+        offsetY: $('.crop-offset-y', $dimensionGroup)
     };
 
     $('.fileupload-trigger', $fieldGroup).fileupload({

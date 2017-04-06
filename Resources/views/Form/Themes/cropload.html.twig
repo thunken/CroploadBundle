@@ -1,0 +1,45 @@
+{% block thunken_image_upload_type_widget %}
+    <div id="illustration-field-group" class="form-group">
+
+        <div class="btn btn-block btn-flat btn-file">
+            <i class="fa fa-file-image-o"></i>
+            &nbsp;Click to upload an image&hellip;
+            <input class="fileupload-trigger"
+                   type="file"
+                   name="file"
+                   accept="image/png,image/gif,image/jpg,image/jpeg"
+                   data-url="{{ oneup_uploader_endpoint(form.vars.upload_endpoint) }}" />
+
+            {{ block('hidden_widget') }}
+
+            <div id="file-upload-progress" class="progress hidden">
+                <div class="progress-bar progress-bar-success" style="width: 0;"></div>
+            </div>
+        </div>
+
+        {% set image = '' %}
+        {% set imagePath = '' %}
+        {% set imageThumbnailPath = '' %}
+        {% if form.vars.value %}
+            {% set image = '/' ~ form.vars.value %}
+            {% set imagePath = asset(image) %}
+            {% set imageThumbnailPath = asset(image) %}
+        {% endif %}
+
+        <div class="preview-modal-link-wrapper">
+            {% include 'ThunkenCroploadBundle:Partials:image-cropper.html.twig' with {
+            'imagePath': imagePath, 'imageThumbnailPath': imageThumbnailPath
+            } %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block thunken_cropload_dimension_widget %}
+    <div id="dimension-field-group">
+        {{ form_widget(form.cropWidth) }}
+        {{ form_widget(form.cropHeight) }}
+        {{ form_widget(form.cropOffsetX) }}
+        {{ form_widget(form.cropOffsetY) }}
+    </div>
+{% endblock %}

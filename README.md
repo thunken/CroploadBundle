@@ -7,7 +7,6 @@ It gives you all the tools needed to add an upload & crop field to any form in m
 # Dependencies
 ## PHP / Managed by Composer
 - OneUploaderBundle: https://github.com/1up-lab/OneupUploaderBundle
-- LiipImagineBundle: https://github.com/liip/LiipImagineBundle
 
 ## Javascript / Css or Less / You can manage these with Bower
 - Jquery: https://jquery.com/
@@ -67,6 +66,7 @@ oneup_uploader:
 ~~~
 
 ## Create or modify a form to add your Cropload field
+### Form Type
 ~~~
 <?php
 
@@ -84,19 +84,17 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             // ...
-            ->add('illustration', ImageType::class, [ // Specify your image field here and replace illustration
+            ->add('illustration', ImageUploadType::class, [
                 'required' => false,
+                'upload_endpoint' => 'post', // Mandatory: upload endpoint defined in OneUploaderBundle
                 'attr' => [
                     'class' => 'fake-file-field',
-                    'data-ratio' => 1.989212903 // Here you can configure the forced ratio of your cropped image
+                    'data-ratio' => 1
                 ]
             ])
-            ->add('dimension', DimensionType::class, [ // This field is needed to submit your 
+            ->add('dimension', DimensionType::class, [
                 'required' => false,
-                'mapped' => false,
-                'attr' => [
-                    'class' => 'crop-width'
-                ]
+                'mapped' => false
             ])
             // ...
         ;
@@ -106,6 +104,13 @@ class PostType extends AbstractType
         return 'post';
     }
 }
+~~~
+
+### Twig Template
+Add these two line wherever you want to display your Cropload field in your form:
+~~~
+{{ form_widget(form.illustration) }}
+{{ form_widget(form.dimension) }}
 ~~~
 
 ## Handle the file after form submission
@@ -141,7 +146,26 @@ class BlogController extends Controller
 
 Your target entity doesn't need any change.
 
-## Form Template
+## Form Theme
+Add or modify the twig form themes section in your app/config.yml file
+~~~
+twig:
+    # ...
+    form_themes:
+        # ...
+        - 'ThunkenCroploadBundle:Form/Themes:cropload.html.twig'
+~~~
+
+You can easily override these cropload form widget (and use LiipImagineBundle for example to avoid display the full size images):
+~~~
+twig:
+    # ...
+    form_themes:
+        # ...
+        - 'CompanyYourBundle:Form/Themes:cropload.html.twig'
+~~~
+
+Custom Cropload Widget example using LiipImagineBundle:
 ~~~
 <div id="illustration-field-group" class="form-group">
 
@@ -177,29 +201,8 @@ Your target entity doesn't need any change.
         } %}
     </div>
 
-    {{ form_widget(form.dimension) }}
-
 </div>
 ~~~
-
-At this point you need to handle your image filters with https://github.com/liip/LiipImagineBundle.  
-Filter configuration example:
-~~~
-liip_imagine:
-    # ...
-    filter_sets:
-
-        image:
-            quality: 100
-            filters:
-                thumbnail: { size: [650, 310], mode: outbound, allow_upscale: true }
-
-        image_thumb:
-            quality: 100
-            filters:
-                thumbnail: { size: [300, 150], mode: outbound, allow_upscale: true }
-~~~
-
 
 ## Add frontend dependencies
 ### Bower includes example (in a bower.json file)
@@ -266,9 +269,8 @@ services:
 - To avoid coding what already exists, it strongly relies on amazing third party libs, we could make it more configurable.
 - We could make the forced ratio optional.
 - We could handle multiple files upload.
-- We could use events to handle file upload.
+- We could use events to handle file upload process.
 - Make the documentation clearer.
-- Make a twig widget for the upload field
 - ??
 
 It has been quickly made for a inside project, needs some improvements, we wanted to share the result.

@@ -14,8 +14,7 @@
   ],
 
   "require" : {
-    "oneup/uploader-bundle": "*",
-    "liip/imagine-bundle": "^1.6"
+    "oneup/uploader-bundle": "*"
   },
 
   "require-dev": {
