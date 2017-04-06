@@ -3,8 +3,8 @@
   line-height: 156px;
   overflow: hidden;
   display: block;
-  border: 12px solid @progress-bg;
-  background-color: @progress-bg;
+  border: 12px solid #f5f5f5;
+  background-color: #f5f5f5;
   text-align: center;
   img {
     display: inline-block;
@@ -17,4 +17,45 @@
     height: 100%;
     overflow: hidden;
   }
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  color: #777;
+  background-color: #f5f5f5;
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    margin-bottom: 0;
+    .progress-bar {
+      line-height: 34px;
+    }
+  }
+  &.btn-flat {
+    border-bottom: 1px solid transparent !important;
+    .progress {
+      border-radius: 0;
+    }
+  }
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }
