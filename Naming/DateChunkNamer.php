@@ -25,6 +25,6 @@ class DateChunkNamer extends UniqidNamer implements NamerInterface
         return
             $date->format('Y') . '/' .
             $date->format('m') . '/' .
-            $date->format('d') . '/';
+            $date->format('d');
     }
 }

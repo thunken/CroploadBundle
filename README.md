@@ -7,6 +7,7 @@ It gives you all the tools needed to add an upload & crop field to any form in m
 # Dependencies
 ## PHP / Managed by Composer
 - OneUploaderBundle: https://github.com/1up-lab/OneupUploaderBundle
+- LiipImagineBundle: https://github.com/liip/LiipImagineBundle
 
 ## Javascript / Css or Less / You can manage these with Bower
 - Jquery: https://jquery.com/

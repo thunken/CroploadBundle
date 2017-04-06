@@ -14,11 +14,15 @@
   ],
 
   "require" : {
-    "symfony/framework-bundle": "~3",
-    "oneup/uploader-bundle": "*"
+    "oneup/uploader-bundle": "*",
+    "liip/imagine-bundle": "^1.6"
   },
 
   "require-dev": {
+    "symfony/framework-bundle": "~3",
+    "doctrine/orm": "^2.5",
+    "doctrine/doctrine-bundle": "^1.6",
+    "phpunit/phpunit": "~4.4"
   },
 
   "suggest": {
