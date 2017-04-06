@@ -1,5 +1,5 @@
-ThunkenCropload
-===============
+ThunkenCroploadBundle
+=====================
 
 Cropload is a simple Upload and Cropping manager for a single file upload on a form.
 It gives you all the tools needed to add an upload & crop field to any form in minutes.
