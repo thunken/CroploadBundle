@@ -190,9 +190,9 @@ Custom Cropload Widget example using LiipImagineBundle:
     {% set imagePath = '' %}
     {% set imageThumbnailPath = '' %}
     {% if form.vars.value.illustration %}
-        {% set image = '/' ~ form.vars.value.illustration %}
-        {% set imagePath = asset(image | imagine_filter('image')) %}
-        {% set imageThumbnailPath = asset(image | imagine_filter('image_thumb')) %}
+        {% set image = '/' ~ form.vars.value %}
+                    {% set imagePath = asset(image | imagine_filter('cropload_illustration')) %}
+                    {% set imageThumbnailPath = asset(image | imagine_filter('cropload_thumb_illustration')) %}
     {% endif %}
 
     <div class="preview-modal-link-wrapper">
@@ -202,6 +202,26 @@ Custom Cropload Widget example using LiipImagineBundle:
     </div>
 
 </div>
+~~~
+
+LiipImagineBundle filters config example:
+~~~
+liip_imagine:
+    
+    # ...
+    
+    filter_sets:
+        # ...
+        cropload_illustration:
+            quality: 100
+            filters:
+                thumbnail: { size: [650, 310], mode: outbound, allow_upscale: true }
+
+        cropload_thumb_illustration:
+            quality: 100
+            filters:
+                thumbnail: { size: [300, 150], mode: outbound, allow_upscale: true }
+        # ...
 ~~~
 
 ## Add frontend dependencies
