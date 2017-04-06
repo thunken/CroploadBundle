@@ -318,6 +318,7 @@ services:
 - We could handle multiple files upload.
 - We could use events to handle file upload process.
 - Make the documentation clearer.
+- Write unit test!
 - ??
 
 It has been made for a inside project, and specific features, needs some improvements, we wanted to share the result.
