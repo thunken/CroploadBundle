@@ -83,17 +83,6 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('title', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Title'
-                ]
-            ])
-            ->add('abstract', TextareaType::class, [
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Abstract'
-                ]
-            ])
             // ...
             ->add('illustration', ImageType::class, [ // Specify your image field here and replace illustration
                 'required' => false,
@@ -109,6 +98,7 @@ class PostType extends AbstractType
                     'class' => 'crop-width'
                 ]
             ])
+            // ...
         ;
     }
 
