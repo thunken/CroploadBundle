@@ -284,6 +284,25 @@ services:
         class: YourCompany\YourBundle\Naming\YourNamer
 ~~~
 
+## Upload listener
+This bundle provides a default upload listener, for the OneUploaderBundle and defined with a service.
+
+### Listener path: 
+~~~
+CroploadBundle/EventListener/UploadListener.php
+~~~
+If you decide to override this listener, keep in mind that you need to set webPath and fileName in the response array.
+
+### Service definition:
+~~~
+services:
+    cropload.upload_listener:
+        class: Thunken\CroploadBundle\EventListener\UploadListener
+        arguments: ["@doctrine.orm.entity_manager", "%upload_web_dir%", "%upload_root_dir%"]
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+~~~
+
 # Enhancing this bundle:
 - This bundle has been first developed for a specific project, we could make it more modular.
 - To avoid coding what already exists, it strongly relies on amazing third party libs, we could make it more configurable.
@@ -293,7 +312,7 @@ services:
 - Make the documentation clearer.
 - ??
 
-It has been quickly made for a inside project, needs some improvements, we wanted to share the result.
+It has been made for a inside project, and specific features, needs some improvements, we wanted to share the result.
 
 For these reasons, feel free to contact us or submit if you have any suggestions, enhancements, questions or if you need help.
 Any feedback is appreciated as well.
