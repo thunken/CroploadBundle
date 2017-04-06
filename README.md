@@ -25,22 +25,13 @@ Cropping Image with real time preview:
 
 # Install bundle
 ## Installation
-Not yet on packagist.  
-Modify and add these lines to your composer.json file as follows:
+Using composer:
 ~~~
-    [...]
-    "require" : {
-        [...]
-        "thunken/croploadbundle" : "dev-master"
-    },
-    "repositories" : [{
-        "type" : "vcs",
-        "url" : "https://github.com/thunken/CroploadBundle.git"
-    }],
-    [...]
+composer require thunken/croploadbundle
 ~~~
 
-Register the bundle in app/AppKernel.php
+## Register the bundle in Symfony
+app/AppKernel.php:
 ~~~
 public function registerBundles()
     {
