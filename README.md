@@ -15,6 +15,14 @@ It gives you all the tools needed to add an upload & crop field to any form in m
 - Cropper: https://fengyuanchen.github.io/cropper/
 - Bootstrap 3, See how to install and use: http://getbootstrap.com/
 
+# Screenshots
+
+Uploading a file with embedded progress bar:
+![Uploading a file with embedded progress bar](https://github.com/thunken/CroploadBundle/blob/master/Doc/Images/Screenshots/Screenshot%20from%202017-04-06%2014-52-29.png "Uploading a file with embedded progress bar")
+
+Cropping Image with real time preview:
+![Cropping Image with real time preview](https://github.com/thunken/CroploadBundle/blob/master/Doc/Images/Screenshots/Screenshot%20from%202017-04-06%2014-51-47.png "Cropping Image with real time preview")
+
 # Install bundle
 ## Installation
 Not yet on packagist.  
